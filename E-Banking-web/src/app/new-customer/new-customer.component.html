@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="card col-md-6 offset-md-3 mt-2">
+    <div class="card-header text-bg-light">New Customer</div>
+    <!--{{newCustomerFormGroup?.value |json}}-->
+    <!--<div *ngIf="newCustomerFormGroup">
+      {{newCustomerFormGroup.controls['name'].errors | json}}
+      {{newCustomerFormGroup.controls['email'].errors | json}}
+    </div>-->
+
+    <div *ngIf="newCustomerFormGroup">
+      <div  class="card-body">
+        <form [formGroup]="newCustomerFormGroup" (ngSubmit)="handleSaveNewCustomer()" >
+          <div>
+            <label class="form-label mt-3">Name:</label>
+            <input type="text" class="form-control" formControlName="name">
+              <small *ngIf="newCustomerFormGroup.controls['name'].errors && newCustomerFormGroup.controls['name'].touched" class="text-danger">
+              {{getErrorMessage('Name', newCustomerFormGroup.controls['name'].errors)}}
+              </small>
+          </div>
+          <div>
+            <label class="form-label mt-3">Email:</label>
+            <input type="text" class="form-control" formControlName="email">
+              <small *ngIf="newCustomerFormGroup.controls['email'].errors && newCustomerFormGroup.controls['email'].touched" class="text-danger">
+              {{getErrorMessage('Email', newCustomerFormGroup.controls['email'].errors)}}
+              </small>
+          </div>
+          <div>
+            <button [disabled]="newCustomerFormGroup.invalid" class="btn btn-primary mt-3">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

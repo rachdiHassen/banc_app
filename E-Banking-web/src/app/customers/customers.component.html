@@ -1,0 +1,56 @@
+<div class="container mt-2">
+  <ng-container *ngIf="customers |async as listCustomer ;else failureOrLoad">
+    <div class="card">
+      <div class="card-header">Customers</div>
+      <div class="card-body">
+        <!--{{searchFormGroup?.value | json}} -->
+        <div *ngIf="searchFormGroup">
+          <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchCustomer()">
+            <div class="input-group-text">
+              <label class="form-label me-2">KeyWord</label>
+              <input type="text" formControlName="keyword" class="form-control">
+              <button class="btn btn-primary">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th>ID</th> <th>NOM</th> <th>EMAIL</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let c of customers |async" >
+            <td>{{c.id}}</td>
+            <td>{{c.name}}</td>
+            <td>{{c.email}}</td>
+            <td >
+              <a (click)="handleDelete(c)" class="btn btn-danger"><i class="bi bi-trash3" ></i> </a>
+            </td>
+            <td>
+              <a (click)="handleCustomerAccounts(c)" class="btn btn-success">Accounts</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container>
+
+  </ng-container>
+  <ng-template #failureOrLoad>
+    <ng-container *ngIf="errorMessage ; else Load">
+      <div class="text-danger">
+        {{errorMessage}}
+      </div>
+    </ng-container>
+    <ng-template #Load>
+      <h4>LOADING.......</h4>
+    </ng-template>
+  </ng-template>
+
+</div>

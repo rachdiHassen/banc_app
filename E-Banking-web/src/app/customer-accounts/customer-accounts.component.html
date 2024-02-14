@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">Liste des comptes de  </div>
+    <div class="card-body">
+      <div>
+        {{customerId}}
+      </div>
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Type</th> <th>ID</th> <th> nom</th> <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of customerAccounts">
+              <td>{{a.type}}</td>
+              <td>{{a.id}}</td>
+              <td>{{a.customerDTO.name}}</td>
+              <td>{{a.customerDTO.email}}</td>
+              <td>
+                <a routerLink="/app-accounts">
+                  <i class="bi bi-search"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
